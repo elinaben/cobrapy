@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" level="3" version="2">
+  <model id="example" name="Example Model">
+    <listOfParameters>
+      <parameter id="Vmax" value="1000" units="per_second" constant="true"/>
+      <parameter id="UpperLimits" value="1000" units="mole_per_liter" constant="false"/>
+      <parameter id="LowerLimits" value="-1000" units="mole_per_liter" constant="false"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="reaction1" name="Reaction 1" reversible="true">
+         <listOfReactants>
+          <speciesReference species="metabolite1" stoichiometry="1" constant="true"/>
+          <speciesReference species="metabolite2" stoichiometry="2" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="metabolite3" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci>Vmax</ci>
+              <ci>reaction1_flux</ci>
+              <apply>
+                <divide/>
+                <ci>reaction1_flux</ci>
+                <apply>
+                  <plus/>
+                  <ci>UpperLimits</ci>
+                  <apply>
+                    <minus/>
+                    <ci>LowerLimits</ci>
+                    <ci>UpperLimits</ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

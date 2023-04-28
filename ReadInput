@@ -1,0 +1,15 @@
+filename = "Params.txt" # replace with your file name
+
+# read parameter names from file
+with open(filename, "r") as f:
+    param_names = f.read().splitlines()
+
+# create params string
+params = {
+    "Vmax": 1000,
+    "UpperLimits": {name: 1000 for name in param_names},
+    "LowerLimits": {name: -1000 for name in param_names}
+}
+
+# print params string
+print(params)
